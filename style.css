@@ -1,0 +1,164 @@
+:root {
+  --bg: #000000;
+  --bg-card: #0e1218;
+  --text: #f1f1f1;
+  --img-profile: #8257e5;
+  --buttons: #fff;
+  --border-button: #1a1a1a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-card);
+  -webkit-font-smoothing: antialiased;
+  color: var(--text);
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.new-border {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  right: 150px;
+  top: 400px;
+
+  gap: 30px;
+}
+
+.new-border h5 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.new-border button {
+  color: #fff;
+  background: var(--bg);
+  border-radius: 15px;
+  padding: 18px 0;
+  width: 230px;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  height: 100vh;
+}
+
+.container h1 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.card {
+  display: flex;
+  position: relative;
+
+  width: 400px;
+  height: 650px;
+
+  background: var(--bg-card);
+  border-radius: 50px;
+
+  overflow: hidden;
+
+  border: 10px solid var(--bg);
+  border-top: 20px solid var(--bg);
+  border-bottom: 20px solid var(--bg);
+}
+
+.card header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  position: absolute;
+  top: 37px;
+  left: 33px;
+}
+
+.card header span {
+  font-size: 24px;
+}
+
+.image-profile {
+  width: 370px;
+  height: 370px;
+
+  border-radius: 300px;
+
+  margin-top: 110px;
+  transform: translateX(60px);
+  border: 10px solid var(--img-profile);
+}
+
+.info {
+  min-width: 195px;
+  height: 195px;
+
+  border-radius: 50px;
+  padding: 20px;
+
+  background: rgba(26, 26, 26, 0.95);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  position: absolute;
+  left: 33px;
+  bottom: 110px;
+}
+
+.info .item {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  position: absolute;
+  right: 10px;
+  bottom: 30px;
+}
+
+.border-rocket {
+  border-color: #8257e5;
+}
+
+.border-white {
+  border-color: #fff;
+}
+
+.border-default {
+  border-color: #000000;
+}
+
+.border-orchid {
+  border-color: orchid;
+}
+.border-lawngreen {
+  border-color: lawngreen;
+}

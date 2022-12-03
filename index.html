@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="shortcut icon"
+      href="./assets/logoWithOutBackground.svg"
+      type="image/x-icon"
+    />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="/script.js"></script>
+
+    <title>Rocket card</title>
+  </head>
+  <body>
+    <script>
+      function getIndexBorderSelected(colors, borderSelected) {
+        let indexBorderSelected;
+
+        colors.forEach((border, index) => {
+          if (border === borderSelected) {
+            indexBorderSelected = index;
+          }
+        });
+
+        return indexBorderSelected;
+      }
+
+      function getNextBorder(colors, indexBorderSelected, maxIndex) {
+        let nextBorder;
+
+        colors.forEach((border, index) => {
+          if (indexBorderSelected === maxIndex) {
+            if (index === 0) {
+              nextBorder = border;
+            }
+          }
+
+          if (index === indexBorderSelected + 1) {
+            nextBorder = border;
+          }
+        });
+
+        return nextBorder;
+      }
+
+      function tradeBorderColor() {
+        const colors = [
+          "border-default",
+          "border-rocket",
+          "border-white",
+          "border-orchid",
+          "border-lawngreen",
+        ];
+        const maxIndex = colors.length - 1;
+
+        const card = document.getElementById("card");
+        const borderSelected = card.classList.value.replace("card ", "");
+
+        const indexBorderSelected = getIndexBorderSelected(
+          colors,
+          borderSelected
+        );
+
+        const nextColor = getNextBorder(colors, indexBorderSelected, maxIndex);
+
+        card.classList.remove(borderSelected);
+        card.classList.add(nextColor);
+      }
+
+      function getApiGitHub() {
+        fetch("https://api.github.com/users/baradelli")
+          .then(async (res) => {
+            if (!res.ok) {
+              throw new Error(res.status);
+            }
+
+            const data = await res.json();
+
+            const a = document.getElementById("ds");
+
+            document.body.innerHTML = `
+            <div class="new-border">
+              <h5>Customizar Rocketcard</h5>
+              <button onclick="tradeBorderColor()">Gerar background</button>
+            </div>
+              <div class="container">
+                <h1>Compartilhe seu #rocketcard</h1>
+                <div class="card border-default" id="card">
+                  <header>
+                    <img src="./assets/logo.svg" alt="logo" />
+                    <span>${data.name}</span>
+                  </header>
+
+                  <img src="${data.avatar_url}" alt="" class="image-profile" />
+                  <div class="info">
+                    <div class="item">
+                      <img src="./assets/followers.svg" alt="" />
+                      <span>${data.followers} Seguidores</span>
+                    </div>
+                    <div class="item">
+                      <img src="./assets/followers.svg" alt="" />
+                      <span>${data.following} Seguindo</span>
+                    </div><div class="item">
+                      <img src="./assets/repository.svg" alt="" />
+                      <span>${data.public_repos} Repositórios</span>
+                    </div>
+                    ${
+                      data.company
+                        ? `<div class="item"><img src="./assets/company.svg" alt="" /><span>${data.company}</span></div>`
+                        : ""
+                    }
+                    <div class="item">
+                      <img src="./assets/location.svg" alt="" />
+                      <span>${data.location}</span>
+                      </div>
+                    </div>
+
+                    <footer>
+                      <img src="./assets/logoWithOutBackground.svg" alt="" />
+                      <span>ROCKETCARD</span>
+                    </footer>
+                  </div>
+                </div>`;
+          })
+          .catch((err) => console.log(err));
+      }
+
+      getApiGitHub();
+    </script>
+  </body>
+</html>
